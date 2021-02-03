@@ -13,11 +13,10 @@ Before diving into this (or any) dataset, it's important to have _domain familia
 
 In the section below, create an **unordered list** of the three articles you found. Make sure to provide an appropriate markdown link (_not_ just the URL) to the article in addition to your 1 - 2 sentence summary. 
 
-1.[This is an article](https://www.nytimes.com/interactive/2020/07/03/us/george-floyd-protests-crowd-size.html) about the significance and overall importance of the George Floyd Protests. I didn't really understand how big those protests were when they were happening and this article helps put it into perspective.
+[This is an article](https://www.nytimes.com/interactive/2020/07/03/us/george-floyd-protests-crowd-size.html) about the significance and overall importance of the George Floyd Protests. I didn't really understand how big those protests were when they were happening and this article helps put it into perspective.
 
-2.Another [George Floyd Article] (https://www.usatoday.com/in-depth/graphics/2020/06/03/map-protests-wake-george-floyds-death/5310149002/) that shows a map of protests that happened as a response to George Floyd's Death
+Another[George Floyd Article](https://www.usatoday.com/in-depth/graphics/2020/06/03/map-protests-wake-george-floyds-death/5310149002/) that shows a map of protests that happened as a response to George Floyd's Death
 
-3.
 This [George Floyd](https://www.nytimes.com/2020/06/06/us/protests-today-police-george-floyd.html) article is closer to the death of George Floyd. This was about 1-2 weeks after his death, and focuses more on the different memorials that happened throughout the USA. 
 
 
