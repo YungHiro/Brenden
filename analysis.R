@@ -1,3 +1,4 @@
+
 # Overview ----------------------------------------------------------------
 
 # Assignment 1: Analysis of the protest data from Crowd Love
@@ -13,63 +14,92 @@
 
 # In this section, you're loading the data and necessary packages.
 # Load the `stringr` package, which you'll use later.
+library(stringr)
 
 # Load the data from https://countlove.org/data/data.csv
 # into a variable called `protests`
-
+protests <- read.csv("https://countlove.org/data/data.csv")
 # How many protests are in the dataset? `num_protests`
-
+num_protests <- nrow(protests)
 # How much information is available about each protest? `num_features`
-
+num_features <-ncol(protests)
 
 # Part 2: Attendees -------------------------------------------------------
 
 # In this section, you're exploring the number of attendees.
 
 # Extract the `Attendees` column into a variable called `num_attendees`
+num_attendees <- protests$Attendees
 
 # What is the lowest number of attendees? `min_attendees`
 # (hint for this and other calculations: you'll need to consider missing values)
+min_attendees <- min(num_attendees,na.rm = T)
 
 # What is the highest number of attendees? `max_attendees`
+max_attendees <- max(num_attendees,na.rm = T)
 
 # What is the mean number of attendees? `mean_attendees`
+mean_attendees <- mean(num_attendees,na.rm = T)
 
 # What is the median number of attendees? `median_attendees`
+median_attendees <- median(num_attendees,na.rm = T) 
 
 # What is the difference between the mean and median number of attendees?
 # `mean_median_diff`
+mean_mediean_diff <- mean_attendees - median_attendees 
 
 # Reflection: What does the difference between the mean and the median
 # tell you about the *distribution* of the data? (if you're unfamiliar with
-# working with distibutions, feel free to ask your TA for clarification)
+# working with distributions, feel free to ask your TA for clarification)
+
+
+#Answer: The difference between the mean and the median will tell us that there
+# some protests that have high turnout, for example, the max attendees is 725k 
+# but the min attendees is 0 .This shows that there is a high variability for 
+# attendees in a protests. The median being 100, shows us that there are more
+# protests that are lower in volume compared to protests that have higher 
+# turnout. There are lots of protests going on and most of them are small in
+# terms of attendees. 
+
 
 # To further assess the distribution of values, create a boxplot of the number
 # of attendees using the `boxplot()` function.
-# Store the plot in a variable called `attendess_distribution`
+# Store the plot in a variable called `attendees_distribution`
 # (Note, we'll use much more refined plotting methods, and pay far
 # more attention to detail later in the course)
+attendees_distribution <- boxplot(num_attendees)
+
 
 # Create another boxplot of the *log* of the number of attendees.
 # Store the plot in a variable `log_attendees_distribution`.
 # (note, you will see a warning in the console, which is expected)
-
+log_attendees_distribution <- boxplot(log(num_attendees))
 
 # Part 3: Locations -------------------------------------------------------
 
 # In this section, you're exploring where protests happened.
 
 # Extract the `Location` column into a variable called `locations`
+locations <- protests$Location
 
 # How many *unique* locations are in the dataset? `num_locations`
+num_locations <- length(unique(locations))
 
 # How many protests occured in Washington? `num_in_wa`
 # (hint: use a function from the stringr package to detect the letters "WA")
+num_in_wa <- length(str_subset(locations,"WA"))
 
 # What proportion of protests occured in Washington? `prop_in_wa`
+prop_in_wa <- length(str_subset(locations, "WA")) / length(locations) * 100
 
 # Reflection: Does the number of protests in Washington surprise you?
 # Why or why not?
+
+# Answer:3 percent at first doesn't seem like a lot of protests, but looking
+# at it compared to the number of protests and how many states there are in the 
+# US, 3 percent is a lot of protests. I am not surprised that WA has a lot of 
+# protests. WA is a progressive state in general and historically. We had big
+# protests in the 90's and recent protests such as the woman's march and BLM. 
 
 # Write a function `count_in_location()` that accepts (as a parameter)
 # a `location` name, and returns the sentence (note: spacing and punctuation):
@@ -79,16 +109,25 @@
 # Note, you should count the number of locations that *match* the parameter
 # put into the function, so `Seattle` should be a match for "Seattle, WA"
 
+count_in_location <- function(place){
+   count_in_places <- length((str_subset(locations,place)))
+   protests_in_place <- paste("There were", count_in_places, "protests in", place)
+   return(protests_in_place)
+   }
+
 # Use your function above to describe the number of protests in "Washington, DC"
 # `dc_summary`
+dc_summary <- count_in_location("Washington, DC")
 
 # Use your function above to describe the number of protests in "Minneapolis"
 # `minneapolis_summary`
+minneapolis_summary <- count_in_location("Minneapolis")
 
 # Create a new vector `states` which is the last two characters of each
 # value in the `locations` vector. Hint, you may want to again use the
 # `stringr` package
 
+states <- string
 # Create a vector of the unique states in your dataset. `uniq_states`
 
 # Create a summary sentence for each state by passing your `uniq_states`
