@@ -1,3 +1,8 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
 # Assignment 1: Protests
 The past few years in the United States, there has been a surge in protests in support of Black Lives Matter, gender equity, and other social issues. In this assignment, you'll work with data from [CountLove](https://countlove.org/) -- the same data often [cited](https://www.nytimes.com/2020/08/28/us/black-lives-matter-protest.html) by the New York Times -- to learn more about demonstrations over the past few years. 
 
@@ -23,6 +28,9 @@ This [George Floyd](https://www.nytimes.com/2020/06/06/us/protests-today-police-
 ## Accompanying Image 
 In this section, please **display one image** to accompany your text, and describe _why_ you included it (~2 - 3 sentences). This will require that you download an image into your project folder. In your description, use **bold** and _italics_ (at least once, for practice) to emphasize some of your points. 
 
+![Black Lives Matter Seattle](C:\Users\AstaXIII\Documents\GitHub\Brenden\images\red.jpg) 
+I included this photo because I was a part of this protest, not exactly sure that this was the same day that I went out to protest but this was the same street that I was on during the protest. This is very important to me because this is the first protest that I have ever been in. It makes sense to protest for **Black Lives**, *it is crazy to think that this is something that is still happening today*. This protest really showed me the power of people working together towards one goal, I didn't really expect that much people to be there but there were thousands of people constantly marching for black lives. 
+
 ## Analysis
 At this point, you should open up your `analysis.R` script to begin working with the data. The script will guide you through an initial analysis of the data. Throughout the script, there are prompts labeled **Reflection**. Please write 1 - 2 sentences for each of these reflections below:
 
@@ -42,11 +50,11 @@ Some states are written in lower case letters so they count as another state. Th
 This does not surprise me because 2020 was a tough year compared to 2020. Significant events that happened in 2020 ranges from  George Floyd Protests, Trumps end of presidency, the eletion, BLM Protests, and etc.  2020 was a tough year for everyone in the world but the pandemic highlighted a lot of the injustices of the previous president and also the racial injustices that have plagued the United States for years.
 
 - Do a bit of research. Find at least *two specific policies* that have been changed as a result of protests in 2020. These may be at the city, state, or University level. Please provide a basic summary, as well as a link to each article.
-- Take a look (`View()`) your `high_level_table` variable. What picture does this paint of the U.S.?
 
 [This article](https://www.seattlepi.com/coronavirus/article/washington-state-coronavirus-outbreak-timeline-15188450.php) basically looks at the history of washington and coronavirus. The lockdown was a really big policy change that affected lots of people in WA. 
 [This article](https://www.statnews.com/2020/05/29/trump-us-terminate-who-relationship/) is about Trump terminating our relationship with WHO. When COVID started I immediately took a global health class and I researched a lot about WHO and what they did. It was crazy to think that our previous president would terminate a relationship with WHO during a pandemic. 
 
+- Take a look (`View()`) your `high_level_table` variable. What picture does this paint of the U.S.?
 
 When looking at this table I Can see some patterns here and there and contrast them with different time periods in history. One positive aspect I can take away from this table is that, if change needs to happen we go out and declare our rights and fight for that change. The problem is, most of the problems that are happening right now are the same problems that keep repeating themselves. 
 
