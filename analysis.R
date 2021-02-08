@@ -14,6 +14,7 @@
 
 # In this section, you're loading the data and necessary packages.
 # Load the `stringr` package, which you'll use later.
+install.packages("stringr")
 library(stringr)
 
 # Load the data from https://countlove.org/data/data.csv
@@ -53,15 +54,6 @@ mean_mediean_diff <- mean_attendees - median_attendees
 # working with distributions, feel free to ask your TA for clarification)
 
 
-#Answer: The difference between the mean and the median will tell us that there
-# some protests that have high turnout, for example, the max attendees is 725k 
-# but the min attendees is 0 .This shows that there is a high variability for 
-# attendees in a protests. The median being 100, shows us that there are more
-# protests that are lower in volume compared to protests that have higher 
-# turnout. There are lots of protests going on and most of them are small in
-# terms of attendees. 
-
-
 # To further assess the distribution of values, create a boxplot of the number
 # of attendees using the `boxplot()` function.
 # Store the plot in a variable called `attendees_distribution`
@@ -95,12 +87,6 @@ prop_in_wa <- length(str_subset(locations, "WA")) / length(locations) * 100
 # Reflection: Does the number of protests in Washington surprise you?
 # Why or why not?
 
-# Answer:3 percent at first doesn't seem like a lot of protests, but looking
-# at it compared to the number of protests and how many states there are in the 
-# US, 3 percent is a lot of protests. I am not surprised that WA has a lot of 
-# protests. WA is a progressive state in general and historically. We had big
-# protests in the 90's and recent protests such as the woman's march and BLM. 
-
 # Write a function `count_in_location()` that accepts (as a parameter)
 # a `location` name, and returns the sentence (note: spacing and punctuation):
 # "There were N protests in LOCATION.", where N is the number of
@@ -110,10 +96,10 @@ prop_in_wa <- length(str_subset(locations, "WA")) / length(locations) * 100
 # put into the function, so `Seattle` should be a match for "Seattle, WA"
 
 count_in_location <- function(place){
-   count_in_places <- length((str_subset(locations,place)))
-   protests_in_place <- paste("There were", count_in_places, "protests in", place)
-   return(protests_in_place)
-   }
+  count_in_places <- length((str_subset(locations,place)))
+  protests_in_place <- paste("There were", count_in_places, "protests in", place)
+  return(protests_in_place)
+}
 
 # Use your function above to describe the number of protests in "Washington, DC"
 # `dc_summary`
@@ -127,17 +113,21 @@ minneapolis_summary <- count_in_location("Minneapolis")
 # value in the `locations` vector. Hint, you may want to again use the
 # `stringr` package
 
-states <- string
+states <- str_sub(locations,-2,-1)
+
 # Create a vector of the unique states in your dataset. `uniq_states`
+unique_states <- unique(states)
 
 # Create a summary sentence for each state by passing your `uniq_states`
 # variable and `count_in_location` variables to the `sapply()` function.
 # Store your results in `state_summary`
 # (don't miss how amazing this is! Very powerful to apply your function to an
 # entire vector *at once* with `sapply()`)
+state_summary <- sapply(unique_states,count_in_location)
 
 # Create a summary table by passing your `states` variable to the `table()`
 # funciton, and storing the result in a variable `state_table`.
+state_table <- table(states)
 
 # Optional: use the View() function to more easily read the table
 
@@ -147,7 +137,7 @@ states <- string
 
 # What was the maximum number of protests in a state? `max_in_state`
 # (hint: use your `state_table` variable)
-
+max_in_state <- (max(state_table))
 
 # Part 4: Dates -----------------------------------------------------------
 
@@ -156,20 +146,27 @@ states <- string
 # Extract the `Date` column into a variable called `dates` by passing the
 # column to the `as.Date()` function (this will process the values as dates,
 # which are *luckily* already in an optimal format for parsing)
+dates <- protests$Date
 
 # What is the most recent date in the dataset? `most_recent`
+most_recent <- max(dates)
 
-# What is the earliest date in the dataset? `earliest`
+# What is the earliest date in the dataset? `earliest
+earliest <- min(dates)
 
 # What is the length of the timespan of the dataset? `time_span`
 # hint: R can do math with dates pretty well by default!
+time_span <- as.Date(most_recent) - as.Date(earliest)
 
 # Create a vector of the dates that are in 2020 `in_2020`
+in_2020 <- str_subset(dates,"2020")
 
 # Create a vector of the dates that are in 2019. `in_2019`
+in_2019 <- str_subset(dates,"2019")
 
 # What is the ratio of the number of protests in 2020 comparted to 2019?
 # `ratio_2020_2019`
+ratio_2020_2019 <- length(in_2020) / length(in_2019)
 
 # Reflection: Does the change in the number of protests from 2019 to 2020
 # surprise you? Why or why not?
@@ -178,12 +175,19 @@ states <- string
 # and returns the sentence:
 # "There were N protests on DATE.", where N is the number of protests on that
 # date, and DATE is the date provided
+count_on_date <- function(date){
+  protests_on_date <- length(str_subset(dates,date))
+  protests_in_dates <- paste("There were", protests_on_date, "protests on", date)
+  return(protests_in_dates)
+}
 
 # Using your function you just wrote, how many protests were there on
 # May 24th, 2020? `num_may_24`
+num_may_24 <- count_on_date("2020-05-24")
 
 # Using your function you just wrote, how many protests were there on
 # May 31th, 2020? `num_on_may_31`
+num_may_31 <- count_on_date("2020-05-31")
 
 # For more on this timeline, see:
 # https://www.nytimes.com/article/george-floyd-protests-timeline.html
@@ -191,11 +195,14 @@ states <- string
 # How many protests occured each month in 2020? `by_month_table`
 # Hint: use the `months()` function, your `in_2020` dates, and the `table()`
 # Function. If you like, you can do this in multiple different steps.
+by_month_table <- table(months(as.POSIXct(in_2020)))
 
 # As a comparison, let's assess the change between July 2019 and July 2020.
 # What is the *difference* in the number of protests between July 2020 and
 # July 2019? You'll want to do this in multiple steps as you see fit, though
 # your answer should be stored in the variable `change_july_protests`.
+
+change_july_protests <- length(str_subset(dates,"2020-07")) - length(str_subset(dates,"2019-07"))
 
 # Reflection: do a bit of research. Find at least *two specific policies* that
 # have been changed as a result of protests in 2020. These may be at the
@@ -207,8 +214,10 @@ states <- string
 
 # In this section, you're exploring *why* protests happened
 # Extract the `Event..legacy..see.tags.` column into a variable called `purpose`
+purpose <- protests$Event..legacy..see.tags.
 
 # How many different purposes are listed in the dataset? `num_purposes`
+num_purposes <- unique(purpose)
 
 # That's quite a few -- if you look at -- View() -- the vector, you'll notice
 # a common pattern for each purpose. It's listed as:
@@ -219,11 +228,14 @@ states <- string
 # you would extract "Civil Rights". You'll also have to *remove the space*
 # before the first parenthasis.
 # Hint: this will take a little bit of googling // trial and error. Be patient!
+high_level_purpose <- str_subsett(purpose, "(?<=\\().*(?=\\))" )
 
 # How many "high level" purposes have you identified? `num_high_level`
+num_high_leve_purpose <- length(high_level_purpose)
 
 # Create a table that counts the number of protests for each high level purpose
 # `high_level_table`
+high_level_table <- table(high_level_purpose)
 
 # Reflection: Take a look (`View()`) your `high_level_table` variable. What
 # picture does this paint of the U.S.?
@@ -235,3 +247,12 @@ states <- string
 # quickly ask questions of the dataset. For example, in the above sections,
 # you wrote functions to ask the same question about different months, or
 # locations. If you need any guidance here, feel free to ask!
+
+did_a_protest_happen <- function (place){
+  if (length(str_subset(locations,place)) >= 1) {
+    return (count_in_location(place))
+  } else {
+    paste("There are no recorded protests in", place)
+  }
+}
+
